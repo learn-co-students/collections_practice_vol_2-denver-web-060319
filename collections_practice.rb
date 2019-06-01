@@ -18,6 +18,18 @@ def count_elements(array)
     array.group_by{|name| name[:name]}.map {|k,v| {:count => v.size, :name => k}}
 end
 
+# def count_elements(array)
+#     array.each do |original_hash|
+#       original_hash[:count] = 0
+#       name = original_hash[:name]
+#       array.each do |hash|
+#         if hash[:name] == name
+#           original_hash[:count] += 1
+#         end
+#       end
+#     end.uniq
+# end
+
 def merge_data(array1, array2)
     array2[0].map do |name, hash2|
         new_hash = {}
