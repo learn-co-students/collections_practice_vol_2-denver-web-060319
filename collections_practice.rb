@@ -68,11 +68,18 @@ def find_cool cool
 end 
 
 def organize_schools schools 
-    binding.pry
-    schools.map do |school, location| 
-        location
-    end.inject(:merge)
-
+    schools_by_location = Hash.new
+    schools.each do |school, location|
+        location.each do |key, city|
+            if  schools_by_location.has_key?(city)
+                schools_by_location[city] << school
+            else 
+                schools_by_location[city] = []
+                schools_by_location[city] << school
+            end
+        end
+    end
+    schools_by_location
 end
 # {"Chicago"=>["dev boot camp chicago"], 
 # "NYC"=>["flatiron school bk", "flatiron school", "general assembly"], 
@@ -85,6 +92,3 @@ end
 #  "general assembly"=>{:location=>"NYC"},
 #  "Hack Reactor"=>{:location=>"SF"}}
 
-# hash.each_with_object({}) do |(k, v), a|
-#     a[k] = v + 3
-#    end 
